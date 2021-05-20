@@ -1,16 +1,16 @@
 from random import randint
-import unicornhat as unicorn
+import unicornhathd as unicorn
 from time import sleep
 
-width = 8
-height = 8
+width = 16
+height = 16
 rows = []
 row_pointer = 0
 
 colours = []
 
-unicorn.brightness(0.4)
-unicorn.rotation(270)
+unicorn.brightness(1)
+unicorn.rotation(0)
 
 
 def init():
@@ -33,6 +33,8 @@ def init():
             g = (i - 24) * 6
         if i > 48:
             g = (i - 48) * 8
+        if i < 16:
+            b = 4 - (i / 4)
         colours.append([r, g, b])
 
 
@@ -56,7 +58,7 @@ def update_rows():
     # create fire
     for h in range(height):
         for w in range(width):
-            rows[h][w + 1] = (rows[h + 1][w] + rows[h + 1][w + 1] + rows[h + 1][w + 2]) / 3.4
+            rows[h][w + 1] = (rows[h + 1][w] + rows[h + 1][w + 1] + rows[h + 1][w + 2]) / 3.3
 
 
 def update_display():
@@ -95,6 +97,10 @@ def step():
 
 
 init()
-while True:
-    step()
-    sleep(0.05)
+try:
+    while True:
+        step()
+        sleep(0.025)
+
+except KeyboardInterrupt:
+    unicorn.off()
