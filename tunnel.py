@@ -1,3 +1,21 @@
+# Original Lua/TIC-80 source was live-coded in
+# 25 minutes by exoticorn during a 256-byte battle
+# at outlinedemoparty.nl 2021-05-15
+# 
+# function TIC()t=time()/1e3
+# for i=0,32639 do
+# x=i%240-120
+# y=i//240-68
+# z=20/(x*x+y*y)^.5+t
+# q=z%9<6 and z-z%9+6 or z
+# w=9/y+t
+# c=y>0 and w<q and
+# (((x*(w-t))^2<99 and 14 or 6)+w%2)or
+# (-y*(q-t)<99/((x*(q-t)/50)^2+1)and(q==z and z%2 or 3)or 12-y/20)
+# poke4(i,c)
+# end
+# end
+
 from random import randint
 import unicornhathd as unicorn
 import math
