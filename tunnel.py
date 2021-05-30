@@ -45,14 +45,16 @@ try:
                 w = 9/y + t if y != 0 else t 
 
                 if y > 0 and w < q:
-                    c = (14 if pow(x*(q - t), 2) < 39 else 6) + w%2
+                    c = (14 if pow(x*(w - t), 2) < 39 else 6) + w%2
                 else:
                     if -y*(q - t) < 99/(pow(x*(q - t)/50, 2) + 1):
                         c = z%2 if q == z else 3
                     else:
                         c = 9 - y/3 - ((0x2 >> (-y%3)) & 1)
 
-                unicorn.set_pixel(x, y, *palette[int(c)])
+
+                unicorn.set_pixel(8 + x, 15 - (y + 9), *palette[int(c)])
+                unicorn.set_pixel(15 - (8 + x), 15 - (y + 9), *palette[int(c)])
 
         unicorn.show()
         sleep(0.025)
